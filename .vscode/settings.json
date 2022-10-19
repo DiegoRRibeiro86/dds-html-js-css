@@ -1,0 +1,19 @@
+{
+    "sqltools.connections": [
+    
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "local",
+            "database": "dds311",
+            "username": "sqluser",
+            "password": "password"
+        }
+    ],
+    "npm.exclude": ""
+}
