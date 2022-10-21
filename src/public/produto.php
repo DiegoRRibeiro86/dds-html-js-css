@@ -34,7 +34,7 @@ switch ($method){
         $body = $_REQUEST;
         // die( var_dump($body) );
 
-        //$entity->setId( $body['id']);
+        $entity->setId( $body['id']);
         $entity->setDescricao( $body['descricao']);
         $entity->setValorUnitario( $body['valor_unitario']);
 
@@ -44,7 +44,7 @@ switch ($method){
         echo json_encode([
                'success'=>$saved,
                'data' => [],
-               'message' => $saved ? 'registro incluído com sucesso' : 'não foi possível incluir o registro.'
+               'message' => $saved ? 'produto incluído com sucesso' : 'não foi possível incluir o produto.'
         ]);
 
     break;

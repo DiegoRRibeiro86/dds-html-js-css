@@ -45,7 +45,7 @@ const obterContatos = () => {
                         <td>${e.assunto}</td>
                         <td>${e.mensagem}</td>
                         <td>
-                           <button type="button" onclick="popularForm(this);"   class="btn btn-info btn-sm">
+                           <button type="button" onclick="popularForm(this);" class="btn btn-info btn-sm">
                                 <i class="fa fa-edit"></i>
                             </button>
                            <button type="button" onclick="excluirContato(${e.id})" class="btn btn-danger btn-sm">

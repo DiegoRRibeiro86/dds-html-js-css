@@ -17,7 +17,7 @@
     document.getElementById("form-produto").descricao.value = pdt.getAttribute('data-descricao')
     document.getElementById("form-produto").valor_unitario.value = pdt.getAttribute('data-valor_unitario')
 
-  }
+}
   
   const obterProdutos = () => {
       
@@ -40,7 +40,7 @@
                         <td>${e.descricao}</td>
                         <td>${e.valor_unitario}</td>
                         <td>
-                           <button type="button" onclick="popularFormProduto(this);"   class="btn btn-info btn-sm">
+                           <button type="button" onclick="popularFormProduto(this);" class="btn btn-info btn-sm">
                                 <i class="fa fa-edit"></i>
                             </button>
                            <button type="button" onclick="excluirProduto(${e.id})" class="btn btn-danger btn-sm">
@@ -54,68 +54,68 @@
 }
 
   
-  const salvarProduto = async (e) => {
+const salvarProduto = async (e) => {
   
-      const id = document.getElementById('id').value;
-      const descricao = document.getElementById('descricao').value;
-      const valorUnitario = document.getElementById('valor_unitario').value;
+    const id = document.getElementById('id').value;
+    const descricao = document.getElementById('descricao').value;
+    const valorUnitario = document.getElementById('valor_unitario').value;
        
-      let formProduto = new FormData();
-      formProduto.append('id', id);
-      formProduto.append('descricao',descricao);
-      formProduto.append('valor_unitario', valorUnitario);
+    let formProduto = new FormData();
+    formProduto.append('id', id);
+    formProduto.append('descricao', descricao);
+    formProduto.append('valor_unitario', valorUnitario);
       
-      let salvar = undefined
+    let salvar = undefined
       
       //console.log(formProduto.toString())
-      if ( id > 0 ){
-          fetch('produto.php', {
-                                 mode: 'cors',
-                                 method: 'PUT', 
-                                 body: new URLSearchParams(formProduto), 
-                                 headers: { 'Content-Type': 'application/x-www-form-urlencoded'} 
-          })
-           .then(resp => resp.json())
-           .then(resp => { console.log(resp);obterProdutos() })
-           .catch(err => console.log(err))
+    if ( id > 0 ){
+        fetch('produto.php', {
+                                mode: 'cors',
+                                method: 'PUT', 
+                                body: new URLSearchParams(formProduto), 
+                                headers: { 'Content-Type': 'application/x-www-form-urlencoded'} 
+        })
+         .then(resp => resp.json())
+         .then(resp => { console.log(resp);obterProdutos() })
+         .catch(err => console.log(err))
                               
-          console.log('atualizando...');
+        console.log('atualizando...');
   
-      } else {
-         fetch('produto.php', {
-              mode: 'cors',
-              method: 'POST', 
-              body: new URLSearchParams(formProduto), 
-              headers: { 'Content-Type': 'application/x-www-form-urlencoded'} 
-           })
-           .then(resp => resp.json())
-           .then(resp => {console.log(resp); obterProdutos()})
-           .catch(err => console.log(err))
+    } else {
+        fetch('produto.php', {
+            mode: 'cors',
+            method: 'POST', 
+            body: new URLSearchParams(formProduto), 
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded'} 
+         })
+         .then(resp => resp.json())
+         .then(resp => {console.log(resp); obterProdutos()})
+         .catch(err => console.log(err))
   
            
-           console.log('incluindo novo...')
-          }
-      }
+         console.log('incluindo novo...')
+        }
+    }
   
-  const excluirProduto = (id) => {
+const excluirProduto = (id) => {
       
-      let formProduto = new FormData();
-      formProduto.append('id', id);
+    let formProduto = new FormData();
+    formProduto.append('id', id);
       
-      let salvar = undefined
+    let salvar = undefined
       
-      fetch(`produto.php?id=${id}`, {
-          mode: 'cors',
-          method: 'DELETE', 
-          //body: new URLSearchParams(formProdutos), 
-          //headers: { 'Content-Type': 'application/x-www-form-urlencoded'} 
-       })
-       .then(resp => resp.json())
-       .then(resp => {console.log(resp); obterProdutos()})
-       .catch(err => console.log(err))
+    fetch(`produto.php?id=${id}`, {
+        mode: 'cors',
+        method: 'DELETE', 
+        //body: new URLSearchParams(formProdutos), 
+        //headers: { 'Content-Type': 'application/x-www-form-urlencoded'} 
+    })
+     .then(resp => resp.json())
+     .then(resp => {console.log(resp); obterProdutos()})
+     .catch(err => console.log(err))
   
        
-       console.log('excluindo o produto...')
-  }
+     console.log('excluindo o produto...')
+}
       
       

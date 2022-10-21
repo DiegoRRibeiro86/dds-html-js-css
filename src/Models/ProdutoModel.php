@@ -41,7 +41,7 @@
 
         $stm = $this->con->prepare($sql);
 
-       // $stm->bindValue(1, $entity->getId());
+        //$stm->bindValue(1, $entity->getId());
         $stm->bindValue(1, $entity->getDescricao());
         $stm->bindValue(2, $entity->getValorUnitario());
 
