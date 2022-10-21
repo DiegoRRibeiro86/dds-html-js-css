@@ -6,7 +6,7 @@
         <div class="col-md-2">
 
         </div>
-        <form method="POST" action="" id="form-produto" name="form-produto">
+        <form method="POST" action="" id="form-produto" name="form-produto" onsubmit="return salvarProduto(this);">
 
             <!-- Criando um groupo label + input   -->
             <!-- este campo não pode ser editado e por isso deve estar desabilitado para alterações com readonly -->
@@ -41,13 +41,13 @@
             </div> -->
 
             <div class="btn-group gap-2 my-2">
-                <button type="submit" onclick="salvarProduto()" class="btn btn-primary" title="Enviar ...">
+                <button type="submit"  class="btn btn-primary" title="Enviar ...">
                 <i class="fa fa-save fa-fw"></i> Salvar</button>
                       
-                <button type="reset" onclick="salvarProduto()" class="btn btn-success">
+                <button type="reset" class="btn btn-success">
                 <i class="fa fa-user-plus"></i> Novo</button>
                       
-                <button type="button" onclick="obterProdutos()" class="btn btn-info">
+                <button type="button" onclick="obterProdutos();" class="btn btn-info">
                 <i class="fa fa-users"></i> Carregar produtos</button>
             </div>
 
@@ -85,5 +85,3 @@
     </div>
 
 </div>
-
-<script src="js/produto.js"></script>

@@ -69,16 +69,20 @@
 
      //Atualiza o contato na base de dados
      public function update(Produto $produto){
-        if ( $this->model->update($produto) ){
-            $this->success = true;
-            $this->data = [];
-            $this->msg = 'Registro atualizado com sucesso.';
+        
+        $success = $this->model->update($produto);
+        
+        if ( $success ){
+            return json_encode([
+                'success'=>true, 
+                'data'=>[],
+                'message'=> "Resgistro atualizado com sucesso."]);
         }
 
         return json_encode([
-                             'success'=>$this->success, 
-                             'data'=>$this->data,
-                             'message'=>$this->msg ]);
+            'success'=>false, 
+            'data'=>[],
+            'message'=> "Resgistro não foi atualizado."]);
      }
 
      //Excluir um novo registro na base de dados

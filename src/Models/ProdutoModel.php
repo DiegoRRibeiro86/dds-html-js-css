@@ -63,7 +63,7 @@
 
            $sql  = ' UPDATE produtos                             
                             SET descricao = ? , 
-                            valorUnitario = ? ';
+                            valor_unitario = ? ';
 
            $sql .= ' WHERE id = ? ' ;
               
@@ -74,14 +74,6 @@
            $stm->bindValue(3, $entity->getId());
    
            $updated = $stm->execute();
-   
-           //die(var_dump($inserted));
-   
-        //    return [
-        //        'success' => $updated,
-        //        'data' => [],
-        //        'message' => $update ? 'registro salvo com sucesso' : 'não foi possível incluir o registro'
-        //    ];
    
            return $updated;
     }

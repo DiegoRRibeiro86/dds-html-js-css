@@ -8,6 +8,7 @@
  * 
  */
 
+
  const popularFormProduto = (elem) => {
     // pega os dados do elemento pai
     const pdt = elem.parentNode.parentNode
@@ -16,6 +17,8 @@
     document.getElementById("form-produto").id.value = pdt.getAttribute('data-id')
     document.getElementById("form-produto").descricao.value = pdt.getAttribute('data-descricao')
     document.getElementById("form-produto").valor_unitario.value = pdt.getAttribute('data-valor_unitario')
+
+    scrollTo(0,0)
 
 }
   
@@ -53,49 +56,63 @@
     .finally( ()  =>  produtos.innerHTML = html )
 }
 
-  
-const salvarProduto = async (e) => {
-  
-    const id = document.getElementById('id').value;
-    const descricao = document.getElementById('descricao').value;
-    const valorUnitario = document.getElementById('valor_unitario').value;
-       
-    let formProduto = new FormData();
-    formProduto.append('id', id);
-    formProduto.append('descricao', descricao);
-    formProduto.append('valor_unitario', valorUnitario);
-      
-    let salvar = undefined
-      
-      //console.log(formProduto.toString())
-    if ( id > 0 ){
-        fetch('produto.php', {
-                                mode: 'cors',
-                                method: 'PUT', 
-                                body: new URLSearchParams(formProduto), 
-                                headers: { 'Content-Type': 'application/x-www-form-urlencoded'} 
-        })
-         .then(resp => resp.json())
-         .then(resp => { console.log(resp);obterProdutos() })
-         .catch(err => console.log(err))
-                              
-        console.log('atualizando...');
-  
-    } else {
-        fetch('produto.php', {
-            mode: 'cors',
-            method: 'POST', 
-            body: new URLSearchParams(formProduto), 
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded'} 
-         })
-         .then(resp => resp.json())
-         .then(resp => {console.log(resp); obterProdutos()})
-         .catch(err => console.log(err))
-  
+    
+const salvarProduto = (e) => {   
+
+        const id = document.getElementById('id').value;
+        const descricao = document.getElementById('descricao').value;
+        const valorUnitario = document.getElementById('valor_unitario').value;
            
-         console.log('incluindo novo...')
-        }
-    }
+        let formProduto = new FormData();
+        formProduto.append('id', id);
+        formProduto.append('descricao', descricao);
+        formProduto.append('valor_unitario', valorUnitario);
+          
+        // // console.log(valorUnitario);
+        // return;
+    
+        let salvar = undefined
+          
+          //console.log(formProduto.toString())
+        if ( id > 0 ){
+            fetch('produto.php', {
+                                    mode: 'cors',
+                                    method: 'PUT', 
+                                    body: new URLSearchParams(formProduto), 
+                                    headers: { 'Content-Type': 'application/x-www-form-urlencoded'} 
+            })
+             .then(resp => resp.json())
+             .then(resp => { console.log(resp);obterProdutos() })
+             .catch(err => console.log(err))
+                                  
+            console.log('atualizando...');
+            
+      
+        } else {
+            fetch('produto.php', {
+                mode: 'cors',
+                method: 'POST', 
+                body: new URLSearchParams(formProduto), 
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded'} 
+             })
+             .then(resp => resp.json())
+             .then(resp => {console.log(resp); obterProdutos()})
+             .catch(err => console.log(err))
+      
+               
+             console.log('incluindo novo...')
+    
+            }
+
+            console.log(e)
+
+            id = document.getElementById('id').value = "0"
+            descricao = document.getElementById('descricao').value = ""
+            valorUnitario = document.getElementById('valor_unitario').value = ""
+
+            return false
+
+}
   
 const excluirProduto = (id) => {
       
@@ -118,4 +135,5 @@ const excluirProduto = (id) => {
      console.log('excluindo o produto...')
 }
       
+
       
